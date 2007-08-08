@@ -10,18 +10,19 @@ BuildRequires: libglade2.0-devel
 BuildRequires: mozilla-firefox-devel
 BuildRequires: openssl-devel
 BuildRequires: chmlib-devel
-
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
+BuildRequires: intltool
 
 %description
+ChmSee is an HTML Help viewer for Unix/Linux. It is based on CHMLIB
+and use Gtk2+ as frontend toolkit. Because of using gecko as HTML
+rendering engine, ChmSee can support rich features of modern HTML
+page, such as CSS and JavaScript.
 
 %prep
-
 %setup -q
 
 %build
-%configure
+%configure2_5x
 %make
 
 %install
@@ -42,4 +43,3 @@ rm -rf %buildroot
 
 %postun
 %clean_menus
-
