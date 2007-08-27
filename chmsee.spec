@@ -1,3 +1,6 @@
+%define _requires_exceptions libnspr4\\|libplc4\\|libplds4\\|libnss\\|libsmime3\\|libsoftokn\\|libssl3\\|libgtkembedmoz\\|libxpcom
+%define firefox_version %(rpm -q mozilla-firefox --queryformat %{VERSION})
+
 Name: chmsee
 Version: 1.0.0
 Release: %mkrel 1
@@ -11,6 +14,7 @@ BuildRequires: mozilla-firefox-devel
 BuildRequires: openssl-devel
 BuildRequires: chmlib-devel
 BuildRequires: intltool
+Requires: %mklibname mozilla-firefox %firefox_version
 
 %description
 ChmSee is an HTML Help viewer for Unix/Linux. It is based on CHMLIB
@@ -22,7 +26,8 @@ page, such as CSS and JavaScript.
 %setup -q
 
 %build
-%configure2_5x
+export GECKO_LIBS="-rpath %{_libdir}/firefox-%{firefox_version}"
+%configure2_5x --enable-gecko=firefox --disable-static
 %make
 
 %install
