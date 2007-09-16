@@ -67,7 +67,9 @@ rm -rf %buildroot
 %post
 %update_menus
 %update_icon_cache hicolor
+%update_mime_database
 
 %postun
 %clean_menus
 %clean_icon_cache hicolor
+%clean_mime_database
