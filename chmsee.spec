@@ -9,6 +9,7 @@ License: GPL
 URL: http://chmsee.gro.clinux.org/
 Group: Graphical desktop/GNOME
 Source: http://gro.clinux.org/frs/download.php/2040/%{name}-%{version}.tar.gz
+Patch0: chmsee-1.0.0-add-gecko-root.patch
 BuildRequires: libglade2.0-devel
 BuildRequires: mozilla-firefox-devel
 BuildRequires: openssl-devel
@@ -24,6 +25,7 @@ page, such as CSS and JavaScript.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 export GECKO_LIBS="-rpath %{_libdir}/firefox-%{firefox_version}"
