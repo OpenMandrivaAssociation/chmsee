@@ -16,6 +16,7 @@ BuildRequires: mozilla-firefox-devel
 BuildRequires: openssl-devel
 BuildRequires: chmlib-devel
 BuildRequires: intltool
+BuildRequires: imagemagick
 Requires: %mklibname mozilla-firefox %firefox_version
 
 %description
