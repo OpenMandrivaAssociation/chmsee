@@ -66,6 +66,8 @@ rm -rf %buildroot
 
 %post
 %update_menus
+%update_icon_cache hicolor
 
 %postun
 %clean_menus
+%clean_icon_cache hicolor
