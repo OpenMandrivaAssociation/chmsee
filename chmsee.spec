@@ -3,9 +3,9 @@
 
 Name: chmsee
 Version: 1.0.0
-Release: %mkrel 4
+Release: %mkrel 5
 Summary: A Gtk+2 based CHM viewer
-License: GPL
+License: GPLv2+
 URL: http://chmsee.gro.clinux.org/
 Group: Graphical desktop/GNOME
 Source: http://gro.clinux.org/frs/download.php/2040/%{name}-%{version}.tar.gz
