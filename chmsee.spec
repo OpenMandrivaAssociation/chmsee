@@ -3,7 +3,7 @@
 
 Name: chmsee
 Version: 1.0.0
-Release: %mkrel 5
+Release: %mkrel 6
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://chmsee.gro.clinux.org/
