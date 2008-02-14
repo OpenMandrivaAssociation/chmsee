@@ -8,6 +8,7 @@ Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://chmsee.gro.clinux.org/
 Group: Graphical desktop/GNOME
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: http://gro.clinux.org/frs/download.php/2040/%{name}-%{version}.tar.gz
 Patch0: chmsee-1.0.0-add-gecko-root.patch
 Patch1: chmsee-1.0.0-desktop-icon.patch
