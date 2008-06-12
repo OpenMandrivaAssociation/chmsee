@@ -66,12 +66,16 @@ rm -rf %buildroot
 %{_datadir}/pixmaps/*
 %{_iconsdir}/hicolor/*/apps/*.png
 
+%if %mdkversion < 200900
 %post
 %update_menus
 %update_icon_cache hicolor
 %update_mime_database
+%endif
 
+%if %mdkversion < 200900
 %postun
 %clean_menus
 %clean_icon_cache hicolor
 %clean_mime_database
+%endif
