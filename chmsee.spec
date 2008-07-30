@@ -1,9 +1,9 @@
 %define _requires_exceptions libnspr4\\|libplc4\\|libplds4\\|libnss\\|libsmime3\\|libsoftokn\\|libssl3\\|libgtkembedmoz\\|libxpcom
-%define firefox_version %(rpm -q mozilla-firefox --queryformat %{VERSION})
+%define xulrunner_version %(pkg-config --modversion libxul-embedding)
 
 Name: chmsee
-Version: 1.0.0
-Release: %mkrel 10
+Version: 1.0.1
+Release: %mkrel 1
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://chmsee.gro.clinux.org/
@@ -13,12 +13,13 @@ Source: http://gro.clinux.org/frs/download.php/2040/%{name}-%{version}.tar.gz
 Patch0: chmsee-1.0.0-add-gecko-root.patch
 Patch1: chmsee-1.0.0-desktop-icon.patch
 BuildRequires: libglade2.0-devel
-BuildRequires: mozilla-firefox-devel
+BuildRequires: xulrunner-devel-unstable
 BuildRequires: openssl-devel
+BuildRequires: libgcrypt-devel
 BuildRequires: chmlib-devel
 BuildRequires: intltool
 BuildRequires: imagemagick
-Requires: %mklibname mozilla-firefox %firefox_version
+Requires:	%mklibname xulrunner %xulrunner_version
 
 %description
 ChmSee is an HTML Help viewer for Unix/Linux. It is based on CHMLIB
@@ -29,18 +30,12 @@ page, such as CSS and JavaScript.
 %prep
 %setup -q
 %patch0 -p0 -b .gecko
-%patch1 -p1
+%patch1 -p0
 
 %build
 ./autogen.sh
-%configure2_5x --enable-gecko=firefox --disable-static
-cd src
-make
-cd -
-cd po
-make
-cd -
-intltool-merge -d -u -c ./po/.intltool-merge-cache ./po chmsee.desktop.in chmsee.desktop
+%configure2_5x --with-gecko=libxul --disable-static
+%make
 
 %install
 rm -rf %buildroot
