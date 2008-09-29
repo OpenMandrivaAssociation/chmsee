@@ -1,9 +1,11 @@
 %define _requires_exceptions libnspr4\\|libplc4\\|libplds4\\|libnss\\|libsmime3\\|libsoftokn\\|libssl3\\|libgtkembedmoz\\|libxpcom
-%define xulrunner_version %(pkg-config --modversion libxul-embedding)
+%define xulrunner 1.9
+%define xullibname %mklibname xulrunner %xulrunner
+%define xulver %(rpm -q --queryformat %%{VERSION} %xullibname)
 
 Name: chmsee
 Version: 1.0.1
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://chmsee.gro.clinux.org/
@@ -19,7 +21,7 @@ BuildRequires: libgcrypt-devel
 BuildRequires: chmlib-devel
 BuildRequires: intltool
 BuildRequires: imagemagick
-Requires:	%mklibname xulrunner %xulrunner_version
+Requires: %xullibname = %xulver
 
 %description
 ChmSee is an HTML Help viewer for Unix/Linux. It is based on CHMLIB
