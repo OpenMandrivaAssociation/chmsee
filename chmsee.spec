@@ -14,6 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: http://gro.clinux.org/frs/download.php/2040/%{name}-%{version}.tar.gz
 Patch0: chmsee-1.0.1-add-gecko-root.patch
 Patch1: chmsee-1.0.0-desktop-icon.patch
+Patch2: chmsee-1.0.1-fix-str-fmt.patch
 BuildRequires: libglade2.0-devel
 BuildRequires: xulrunner-devel-unstable
 BuildRequires: openssl-devel
@@ -33,6 +34,7 @@ page, such as CSS and JavaScript.
 %setup -q
 %patch0 -p0 -b .gecko
 %patch1 -p0
+%patch2 -p0
 
 %build
 ./autogen.sh
