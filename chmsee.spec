@@ -4,16 +4,15 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %xullibname)
 
 Name: chmsee
-Version: 1.0.1
-Release: %mkrel 3
+Version: 1.0.2
+Release: %mkrel 1
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
-URL: http://chmsee.gro.clinux.org/
+URL: http://code.google.com/p/chmsee/
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source: http://gro.clinux.org/frs/download.php/2040/%{name}-%{version}.tar.gz
-Patch0: chmsee-1.0.1-add-gecko-root.patch
-Patch1: chmsee-1.0.0-desktop-icon.patch
+Source: http://chmsee.googlecode.com/files/%{name}-%{version}.tar.gz
+Patch1: chmsee-1.0.2-desktop-icon.patch
 Patch2: chmsee-1.0.1-fix-str-fmt.patch
 BuildRequires: libglade2.0-devel
 BuildRequires: xulrunner-devel-unstable
@@ -32,13 +31,11 @@ page, such as CSS and JavaScript.
 
 %prep
 %setup -q
-%patch0 -p0 -b .gecko
 %patch1 -p0
 %patch2 -p0
 
 %build
-./autogen.sh
-%configure2_5x --with-gecko=libxul --disable-static
+%configure2_5x --with-gecko=libxul
 %make
 
 %install
