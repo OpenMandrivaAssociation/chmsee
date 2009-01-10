@@ -4,7 +4,7 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %xullibname)
 
 Name: chmsee
-Version: 1.0.2
+Version: 1.0.3
 Release: %mkrel 1
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
@@ -12,8 +12,6 @@ URL: http://code.google.com/p/chmsee/
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: http://chmsee.googlecode.com/files/%{name}-%{version}.tar.gz
-Patch1: chmsee-1.0.2-desktop-icon.patch
-Patch2: chmsee-1.0.1-fix-str-fmt.patch
 BuildRequires: libglade2.0-devel
 BuildRequires: xulrunner-devel-unstable
 BuildRequires: openssl-devel
@@ -31,8 +29,6 @@ page, such as CSS and JavaScript.
 
 %prep
 %setup -q
-%patch1 -p0
-%patch2 -p0
 
 %build
 %configure2_5x --with-gecko=libxul
@@ -43,9 +39,9 @@ rm -rf %buildroot
 %makeinstall_std
 
 mkdir -p %buildroot%_iconsdir/hicolor/{16x16,32x32,48x48}/apps
-install -p -m 644 -D chmsee-icon.png $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/apps/chmsee.png
-convert chmsee-icon.png -resize 16x16 $RPM_BUILD_ROOT%{_iconsdir}/hicolor/16x16/apps/chmsee.png
-convert chmsee-icon.png -resize 32x32 $RPM_BUILD_ROOT%{_iconsdir}/hicolor/32x32/apps/chmsee.png
+install -p -m 644 -D data/chmsee-icon.png $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/apps/chmsee.png
+convert data/chmsee-icon.png -resize 16x16 $RPM_BUILD_ROOT%{_iconsdir}/hicolor/16x16/apps/chmsee.png
+convert data/chmsee-icon.png -resize 32x32 $RPM_BUILD_ROOT%{_iconsdir}/hicolor/32x32/apps/chmsee.png
 
 %find_lang %name
 
