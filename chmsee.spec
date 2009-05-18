@@ -4,8 +4,8 @@
 %define xulver %(rpm -q --queryformat %%{VERSION} %xullibname)
 
 Name: chmsee
-Version: 1.0.4
-Release: %mkrel 3
+Version: 1.0.5
+Release: %mkrel 1
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://code.google.com/p/chmsee/
@@ -19,6 +19,7 @@ BuildRequires: libgcrypt-devel
 BuildRequires: chmlib-devel
 BuildRequires: intltool
 BuildRequires: imagemagick
+BuildRequires: cmake
 Requires: %xullibname = %xulver
 
 %description
@@ -31,12 +32,14 @@ page, such as CSS and JavaScript.
 %setup -q
 
 %build
-%configure2_5x --with-gecko=libxul
+%cmake 
 %make
 
 %install
 rm -rf %buildroot
+pushd build
 %makeinstall_std
+popd
 
 mkdir -p %buildroot%_iconsdir/hicolor/{16x16,32x32,48x48}/apps
 install -p -m 644 -D data/chmsee-icon.png $RPM_BUILD_ROOT%{_iconsdir}/hicolor/48x48/apps/chmsee.png
@@ -53,7 +56,6 @@ rm -rf %buildroot
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/chmsee
-%{_mandir}/man1/*
 %{_datadir}/mime-info/*
 %{_datadir}/pixmaps/*
 %{_iconsdir}/hicolor/*/apps/*.png
