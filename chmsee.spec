@@ -1,26 +1,37 @@
 %define _requires_exceptions libnspr4\\|libplc4\\|libplds4\\|libnss\\|libsmime3\\|libsoftokn\\|libssl3\\|libgtkembedmoz\\|libxpcom
-%define xulrunner 1.9
-%define xullibname %mklibname xulrunner %xulrunner
-%define xulver %(rpm -q --queryformat %%{VERSION} %xullibname)
 
 Name: chmsee
 Version: 1.0.6
-Release: %mkrel 3
+Release: %mkrel 4
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://code.google.com/p/chmsee/
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: http://chmsee.googlecode.com/files/%{name}-%{version}.tar.gz
+Patch: chmsee-1.0.6-libxul-maxver.patch
 BuildRequires: libglade2.0-devel
-BuildRequires: xulrunner-devel-unstable
+%if %mdvver >= 201000
+BuildRequires:	xulrunner-devel <= 1.9.1.2
+%else
+BuildRequires:	xulrunner-devel-unstable
+%endif
 BuildRequires: openssl-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: chmlib-devel
 BuildRequires: intltool
 BuildRequires: imagemagick
 BuildRequires: cmake
-Requires: %xullibname = %xulver
+%if %mdvver >= 201000
+Requires: libxulrunner = %{xulrunner_version}
+%else
+#gw as Fedora does:
+%define xulrunner 1.9
+%define libname %mklibname xulrunner %xulrunner
+%define xulver %(rpm -q --queryformat %%{VERSION} %libname)
+Requires: %libname = %xulver
+%endif
+
 
 %description
 ChmSee is an HTML Help viewer for Unix/Linux. It is based on CHMLIB
@@ -30,6 +41,7 @@ page, such as CSS and JavaScript.
 
 %prep
 %setup -q
+%patch -p1 -b .libxul-maxver
 
 %build
 %cmake 
