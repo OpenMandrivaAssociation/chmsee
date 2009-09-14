@@ -1,18 +1,17 @@
 %define _requires_exceptions libnspr4\\|libplc4\\|libplds4\\|libnss\\|libsmime3\\|libsoftokn\\|libssl3\\|libgtkembedmoz\\|libxpcom
 
 Name: chmsee
-Version: 1.0.6
-Release: %mkrel 4
+Version: 1.0.7
+Release: %mkrel 1
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://code.google.com/p/chmsee/
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: http://chmsee.googlecode.com/files/%{name}-%{version}.tar.gz
-Patch: chmsee-1.0.6-libxul-maxver.patch
 BuildRequires: libglade2.0-devel
 %if %mdvver >= 201000
-BuildRequires:	xulrunner-devel <= 1.9.1.2
+BuildRequires:	xulrunner-devel
 %else
 BuildRequires:	xulrunner-devel-unstable
 %endif
@@ -41,7 +40,6 @@ page, such as CSS and JavaScript.
 
 %prep
 %setup -q
-%patch -p1 -b .libxul-maxver
 
 %build
 %cmake 
