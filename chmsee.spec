@@ -2,13 +2,14 @@
 
 Name: chmsee
 Version: 1.0.7
-Release: %mkrel 2
+Release: %mkrel 3
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://code.google.com/p/chmsee/
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: http://chmsee.googlecode.com/files/%{name}-%{version}.tar.gz
+Patch0: chmsee-1.0.7-fix-libxul-embedded-pkgconfig-name.patch
 BuildRequires: libglade2.0-devel
 %if %mdvver >= 201000
 BuildRequires:	xulrunner-devel
@@ -40,6 +41,7 @@ page, such as CSS and JavaScript.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %cmake 
