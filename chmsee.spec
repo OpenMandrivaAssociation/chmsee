@@ -1,15 +1,14 @@
 %define _requires_exceptions libnspr4\\|libplc4\\|libplds4\\|libnss\\|libsmime3\\|libsoftokn\\|libssl3\\|libgtkembedmoz\\|libxpcom
 
 Name: chmsee
-Version: 1.0.7
-Release: %mkrel 4
+Version: 1.1.0
+Release: %mkrel 1
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://code.google.com/p/chmsee/
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: http://chmsee.googlecode.com/files/%{name}-%{version}.tar.gz
-Patch0: chmsee-1.0.7-fix-libxul-embedded-pkgconfig-name.patch
 BuildRequires: libglade2.0-devel
 %if %mdvver >= 201000
 BuildRequires:	xulrunner-devel
@@ -20,8 +19,8 @@ BuildRequires: openssl-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: chmlib-devel
 BuildRequires: intltool
-BuildRequires: imagemagick
 BuildRequires: cmake
+BuildRequires: libxml2-devel
 %if %mdvver >= 201000
 Requires: libxulrunner = %{xulrunner_version}
 %else
@@ -41,14 +40,13 @@ page, such as CSS and JavaScript.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %cmake 
 %make
 
 %install
-rm -rf %buildroot
+%__rm -rf %buildroot
 pushd build
 %makeinstall_std
 popd
@@ -61,7 +59,7 @@ convert data/chmsee-icon.png -resize 32x32 $RPM_BUILD_ROOT%{_iconsdir}/hicolor/3
 %find_lang %name
 
 %clean
-rm -rf %buildroot
+%__rm -rf %buildroot
 
 %files -f %{name}.lang
 %defattr(-,root,root)
