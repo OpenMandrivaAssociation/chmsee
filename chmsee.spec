@@ -19,6 +19,7 @@ BuildRequires: openssl-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: chmlib-devel
 BuildRequires: intltool
+BuildRequires: imagemagick
 BuildRequires: cmake
 BuildRequires: libxml2-devel
 %if %mdvver >= 201000
