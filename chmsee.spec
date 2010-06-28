@@ -2,7 +2,7 @@
 
 Name: chmsee
 Version: 1.1.0
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://code.google.com/p/chmsee/
