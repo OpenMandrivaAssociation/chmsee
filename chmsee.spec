@@ -1,7 +1,5 @@
 %define _requires_exceptions libnspr4\\|libplc4\\|libplds4\\|libnss\\|libsmime3\\|libsoftokn\\|libssl3\\|libgtkembedmoz\\|libxpcom
 
-%define subrel 1
-
 Name: chmsee
 Version: 1.1.0
 Release: %mkrel 2
