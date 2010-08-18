@@ -1,8 +1,8 @@
 %define _requires_exceptions libnspr4\\|libplc4\\|libplds4\\|libnss\\|libsmime3\\|libsoftokn\\|libssl3\\|libgtkembedmoz\\|libxpcom
 
 Name: chmsee
-Version: 1.1.0
-Release: %mkrel 2
+Version: 1.2.0
+Release: %mkrel 1
 Summary: A Gtk+2 based CHM viewer
 License: GPLv2+
 URL: http://code.google.com/p/chmsee/
@@ -69,18 +69,4 @@ convert data/chmsee-icon.png -resize 32x32 $RPM_BUILD_ROOT%{_iconsdir}/hicolor/3
 %{_datadir}/chmsee
 %{_datadir}/mime-info/*
 %{_datadir}/pixmaps/*
-%{_iconsdir}/hicolor/*/apps/*.png
-
-%if %mdkversion < 200900
-%post
-%update_menus
-%update_icon_cache hicolor
-%update_mime_database
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_menus
-%clean_icon_cache hicolor
-%clean_mime_database
-%endif
+%{_iconsdir}/hicolor/*/*/*
