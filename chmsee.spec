@@ -6,7 +6,7 @@ Version:	1.3.1.1
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
-URL:		http://code.google.com/p/chmsee/
+URL:		https://code.google.com/p/chmsee/
 Source0:	http://chmsee.googlecode.com/files/%{name}-%{version}.tar.gz
 
 BuildRequires:	cmake
